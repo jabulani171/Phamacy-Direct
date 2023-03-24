@@ -1,0 +1,77 @@
+<div class="page-title">
+    <div class="title_left">
+      <h3>JOB LIST</h3>
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2><small>Job orders by file transfer</small></h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <table width="100%" id="job-header-datatable" class="table table-striped jambo_table table-bordered nowrap">
+              <thead>
+                  <tr>
+                      <th>Production_Batch</th>
+                      <th>Print_Batch</th>
+                      <th>Collection_Point</th>
+                      <th>Collection_Point_Ref</th>
+                      <th>created_at</th>
+                      <th>updatetd_at</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+   </div>
+
+
+   <div class="row">
+    <div class="jumbotron">
+      <div class="col-sm-12">
+        <div style="text-align:center;"><h4 class="text-danger"><b>USER NOT AUTHERISED</b></h4></div>
+      </div>
+    </div>
+   </div>
+
+
+<script type="text/javascript">
+var oTable;
+
+$(document).ready(function(){
+  let MyId = '{{Filter}}';
+var Url = '/API/DTGetJobHeader';
+if(MyId){
+  Url+='?id='+MyId
+}
+
+oTable = $('#job-header-datatable').DataTable({
+  "order": true,
+  "paging": 10,
+  "pageLength": true,
+  "processing": true,
+  'ajax':{
+    'type':'POST',
+    'url':Url,
+  },
+  'columns':[
+    {'data':'Production_Batch'},
+    {'data':'Print_Batch'},
+    {'data':'Collection_Point'},
+    {'data':'Collection_Point_Ref'},
+    {'data':'created_at'},
+    {'data':'updated_at'}
+  ]
+
+})
+
+})
+  </script>

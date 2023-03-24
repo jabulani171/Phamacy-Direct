@@ -1,0 +1,203 @@
+<button class="btn btn-primary pull-right" data-target="#uploadModal" data-toggle="modal">Upload File</button>
+<div class="modal" id="uploadModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload File</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <input type="file" name="upload" >
+          <button >Upload</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">Cancel Uplaod</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-title">
+  <div class="title_left">
+	<h3>JOB DETAIL</h3>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><small>Detail records for job</small></h2>
+      <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table width="100%" id="job-detail-datatable" class="table table-striped jambo_table table-bordered nowrap">
+        <thead>
+          <tr>
+            <th>Production_Batch</th>
+            <th>Print_Batch</th>
+            <th> Client_Name</th>
+            <th>Client_Address</th>
+            <th>Double_Dispensing_Indicator</th>
+            <th>Date_Dispensed</th>
+            <th>Script_Number	</th>
+            <th>Item_Count</th>
+            <th>Drug_Description</th>
+            <th>Dosage_Line_1</th>
+            <th>Dosage_Line_2</th>
+            <th>Dosage_Line_3</th>
+            <th>Dosage_Line_4</th>
+            <th>Title</th>
+            <th>Initials</th>
+            <th>Surname</th>
+            <th>Repeat</th>
+            <th>Pharmacist</th>
+            <th>File_No </th>
+            <th>Batch</th>
+            <th>Expiry</th>
+            <th>Lane</th>
+            <th>FCY	</th>
+            <th>SQ</th>
+            <th>Order_No</th>
+            <th>Line_No</th>
+            <th>Hospital_Ref</th>
+            <th>Production_Batch_1</th>
+            <th>Production_Batch_2</th>
+            <th>Production_Expiry</th>
+            <th>Name</th>
+            <th>Fridge</th>
+            <th>SSEQ</th>
+            <th>Date_Of_Birth</th>
+            <th>Cell_No</th>
+            <th>ID_Number</th>
+            <th>Collection_Date</th>
+            <th>Next_Collection_Date</th>
+            <th>Collection_Point</th>
+            <th>Profile_No</th>
+            <th>Repeat_Notice</th>
+            <th>Following_Items_Not_Included</th>
+            <th>Line_1</th>
+            <th>Line_2</th>
+            <th>Line_3</th>
+            <th>Line_4</th>
+            <th>Facility_Review</th>
+            <th>Parcel_Ref</th>
+            <th>Collection_Point_Ref</th>
+            <th>MpNo</th>
+            <th>Hub</th>
+            <th>Zone</th>
+            <th>Second_Rx_Ref</th>
+            <th>Parcel_Reference_Number</th>
+            <th>MAN_SEQ</th>
+            <th>SEQUENCE</th>
+            <th>Created_at</th>
+            <th>Updated_at</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    </div>
+   </div>
+ 
+
+   <div class="row">
+    <div class="jumbotron">
+      <div class="col-sm-12">
+        <div style="text-align:center;"><h4 class="text-danger"><b>USER NOT AUTHERISED</b></h4></div>
+      </div>
+    </div>
+   </div>
+
+
+   <script type="text/javascript">
+    var oTable;
+    $(document).ready(function() {
+      let MyId = '{{Filter}}';
+      var Url = '/API/DTGetJobDetail';
+      if(MyId){
+         Url += '?id=' + MyId;
+      }
+        
+  
+          oTable = $('#job-detail-datatable').DataTable({
+            "order": [[0, "asc"]],
+              "paging": true,
+              "pageLength": 10,
+              "processing": true,
+              "serverSide": true,
+              'ajax': {
+                  'type': 'POST',
+                  'url': Url,
+              },
+              'columns':[
+              { 'data': 'Production_Batch' },
+{ 'data': 'Print_Batch'},
+{ 'data': 'Client_Name'},
+{ 'data': 'Client_Address'},
+{ 'data': 'Double_Dispensing_Indicator','render': function(jsonIndicator){return (jsonIndicator.substr(2)).replace(">>","");}},
+{ 'data': 'Date_Dispensed'},
+{ 'data': 'Script_Number'},
+{ 'data': 'Item_Count' },
+{ 'data': 'Drug_Description' },
+{ 'data': 'Dosage_Line_1'},
+{ 'data': 'Dosage_Line_2'},
+{ 'data': 'Dosage_Line_3'},
+{ 'data': 'Dosage_Line_4'},
+{ 'data': 'Title' },
+{ 'data': 'Initials' },
+{ 'data': 'Surname'},
+{ 'data': 'Repeat'},
+{ 'data': 'Pharmacist'},
+{ 'data': 'File_No'},
+{ 'data': 'Batch' },
+{ 'data': 'Expiry' },
+{ 'data': 'Lane'},
+{ 'data': 'FCY'},
+{ 'data': 'SQ'},
+{ 'data': 'Order_No'},
+{ 'data': 'Line_No' },
+{ 'data': 'Hospital_Ref' },
+{ 'data': 'Production_Batch_1'},
+{ 'data': 'Production_Batch_2'},
+{ 'data': 'Production_Expiry'},
+{ 'data': 'Name' },
+{ 'data': 'Fridge' },
+{ 'data': 'SSEQ'},
+{ 'data': 'Date_Of_Birth'},
+{ 'data': 'Cell_No'},
+{ 'data': 'ID_Number'},
+{ 'data': 'Collection_Date' },
+{ 'data': 'Next_Collection_Date'},
+{ 'data': 'Collection_Point'},
+{ 'data': 'Profile_No'},
+{ 'data': 'Repeat_Notice'},
+{ 'data': 'Following_Items_Not_Included'},
+{ 'data': 'Line_1'},
+{ 'data': 'Line_2'},
+{ 'data': 'Line_3' },
+{ 'data': 'Line_4' },
+{ 'data': 'Facility_Review'},
+{ 'data': 'Parcel_Ref'},
+{ 'data': 'Collection_Point_Ref'},
+{ 'data': 'MpNo' },
+{ 'data': 'Hub'},
+{ 'data': 'Zone'},
+{ 'data': 'Second_Rx_Ref'},
+{ 'data': 'Parcel_Reference_Number' },
+{ 'data': 'MAN_SEQ'},
+{ 'data': 'SEQUENCE'},
+{ 'data': 'created_at'},
+{ 'data': 'updated_at'}
+              ]
+      })
+    });
+
+  </script>
+
